@@ -1,0 +1,25 @@
+body {
+    font-family: 'Lobster Two', cursive;
+    background-color: rgb(47, 79, 79);
+    text-align: center;
+}
+
+.splash-heading {
+    line-height: 1rem;
+    font-size: 7rem;
+    padding: 1% 7%;
+    color: #fff;
+}
+
+.player-div {
+    display: inline-block;
+}
+
+.player-label {
+    font-size: 3rem;
+    color: #fff;
+}
+
+.dice-image {
+    width: 60%;
+}
