@@ -3,12 +3,13 @@ var soundFilePaths = ["./sounds/tom-1.mp3", "./sounds/tom-2.mp3", "./sounds/tom-
 
 for (let index = 0; index < document.querySelectorAll(".drum-button").length; index++) {
     document.querySelectorAll(".drum-button")[index].addEventListener("click", function () {
-        var sound = new Audio(soundFilePaths[index]);
-        sound.play();
+        playSoundOnKeyPress(this.textContent.toUpperCase());
+        buttonPressedAnimation(this.textContent.toUpperCase());
     });
 }
 
 document.addEventListener("keypress", function(triggeringEvent) {
+    buttonPressedAnimation(triggeringEvent.key.toUpperCase());
     playSoundOnKeyPress(triggeringEvent.key.toUpperCase());
 });
 
@@ -49,4 +50,10 @@ function playSoundOnKeyPress(key) {
             console.log("The Key Pressed was " + key + " .");
             break;
     }
+}
+function buttonPressedAnimation(key) {
+    document.querySelector("." + key).classList.add("is-pressed");
+    setTimeout(function () {
+        document.querySelector("." + key).classList.remove("is-pressed");
+    }, 100);
 }
