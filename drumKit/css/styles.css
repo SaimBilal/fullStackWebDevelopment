@@ -1,0 +1,24 @@
+body {
+    background-color: darkslateblue;
+    text-align: center;
+}
+
+.splash-heading {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 7rem;
+    color: white;
+    line-height: 1rem;
+}
+
+.drum {
+    padding: 2% 15%;
+}
+
+.drum-button {
+    font-family: 'Tilt Warp', cursive;
+    margin: 1%;
+    font-size: 4rem;
+    padding: 4%;
+    width: 15%;
+    border-radius: 10px;
+}
