@@ -64,12 +64,16 @@ function endGame() {
     gameSequence = [];
 }
 
+//helper functions
+
 function generateGameSequence(gameSequence) {
 
     let buttons = ["red", "green", "yellow", "blue"];
     gameSequence.push(buttons[Math.floor(Math.random() * buttons.length)]);
     return gameSequence;
 }
+
+// next step animation seperated from the click
 
 function playGameSequenceNextAnimation(nextColor) {
 
@@ -86,12 +90,12 @@ function playGameSequenceNextAnimation(nextColor) {
 
 function checkGameSequence() {
 
-    if (!(inputSequence[inputSequence.length - 1] === gameSequence[inputSequence.length - 1])) {
+    if (!(inputSequence[inputSequence.length - 1] === gameSequence[inputSequence.length - 1])) {    //is the latest input the same as the game sequence input at that point.
         
         endGame();
     } else {
         
-        if (inputSequence.length === gameSequence.length) {
+        if (inputSequence.length === gameSequence.length) {     //has the player finished entering the sequence 
             setTimeout(function () {
                 nextStep();
             }, 1000);
