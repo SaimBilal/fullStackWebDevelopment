@@ -10,14 +10,7 @@ var falseClickflag = false;
 $(".btn").click(function () {
 
     var userChosenColour = $(this).attr("id");
-    var chosenClass = $(this);
-    chosenClass.addClass("pressed");
-    setTimeout(function () {
-        chosenClass.removeClass("pressed");
-    }, 75);
-
-    let clickSound = new Audio("./sounds/" + userChosenColour + ".mp3");
-    clickSound.play();
+    playGameSequenceNextAnimation(userChosenColour);
 
     if (gameState === false) {
         startGame(userChosenColour);
