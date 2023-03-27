@@ -6,14 +6,14 @@ const request = require("request");
 const app = express();
 
 app.use(express.static(__dirname));
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get("/signup", function(req, res){
+app.get("/signup", function (req, res) {
     res.sendFile(__dirname + "/signup.html");
     console.log("You are at: " + req.url);
 });
 
-app.post("/signup", function(req, res){
+app.post("/signup", function (req, res) {
 
     var firstName = req.body.first_Name;
     var lastName = req.body.last_Name;
@@ -42,18 +42,28 @@ app.post("/signup", function(req, res){
 
     const dataJSON = JSON.stringify(data);
 
-    const request = https.request(url, ops, function(response){
-        response.on("data", function(data){
+    const request = https.request(url, ops, function (response) {
+        response.on("data", function (data) {
             console.log(JSON.parse(data));
         });
+
+        let postSuccess = response.statusCode;
+        if (postSuccess === 201) {
+            res.sendFile(__dirname + "/success.html");
+        } else {
+            res.sendFile(__dirname + "/failure.html");
+        }
     });
 
     request.write(dataJSON);
     request.end();
 });
 
+app.post("/failure", function(req, res){
+    res.redirect("/signup");
+});
 
-app.listen(3000, function(){
+app.listen(3000, function () {
     console.log("Server is running on ::3000");
 });
 
