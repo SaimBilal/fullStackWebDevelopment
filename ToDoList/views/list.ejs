@@ -1,18 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include("header") -%>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/styles.css">
-    <title>To-Do List</title>
-</head>
-
-<body>
     <div class="box">
         <h1 id="heading">
-            <%= dayString %>
+            <%= heading %>
         </h1>
 
         <% TodoList.forEach((item)=> { %>
@@ -26,11 +16,10 @@
 
             <form class="item" action="/" method="post">
                 <input type="text" name="newItem" placeholder="Add new item here" autofocus>
-                <button type="submit"><i class="fa-solid fa-plus"></i></button>
+                <button type="submit" name ="list" value= <%= heading %> ><i class="fa-solid fa-plus"></i></button>
             </form>
     </div>
 
     <script src="https://kit.fontawesome.com/d786a7a5dd.js" crossorigin="anonymous"></script>
-</body>
 
-</html>
+<%- include("footer") -%>

@@ -1,5 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const date = require(__dirname + "/date.js");
 
 const app = express();
 
@@ -9,25 +10,34 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 var items = ["Wake Up", "Eat", "Shit"];
+var workItems = [];
 
 app.get("/", function (req, res) {
-    let date = new Date();
-    let currentDate = date.toLocaleDateString("en-UK", {
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-    });
+
+    currentDate = date.getDate();
 
     res.render("list", {
-        dayString: currentDate,
+        heading: currentDate,
         TodoList: items
     });
 });
 
+app.get("/work", function (req, res){
+    res.render("list", {
+        heading: "Work",
+        TodoList: workItems
+    });
+});
+
 app.post("/", function (req, res) {
-    items.push(req.body.newItem);
-    res.redirect("/");
+
+    if (req.body.list == "Work") {
+        workItems.push(req.body.newItem);
+        res.redirect("/work");
+    } else {
+        items.push(req.body.newItem);
+        res.redirect("/");    
+    }
 });
 
 app.listen(3000, function () {
